@@ -1,0 +1,43 @@
+---
+# tasks file for samba
+ - name: install {{ samba_pkg }}
+   yum: name= "{{ samba_pkg }}" state=present
+
+ - name: install policycoreutils
+   yum: name=policycoreutils-python-utils-2.8-16.1.el8.noarch state=present 
+
+ - name: start and enabled {{ samba_src }}
+   service: 
+    name: "{{ item }}"
+    state: started
+    enabled: true
+   with_items:
+    - "{{ samba_src }}"
+
+ - name: Create samba dir
+   file:
+    path: "{{ samba_dir }}"  
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+
+
+ - name: Allow smaba to selinux
+   sefcontext:
+    target: /smbshare(/.*)?
+    setype: samba_share_t
+    state: present 
+
+ - name: Send smb.j2 to samba config file 
+   template:
+    src: smb.j2
+    dest: "{{ samba_config_file }}"
+   notify: restart_smb_nmb
+
+ - name: Run restore context
+   shell: restorecon -vRF "{{ samba_dir }}"  
+           
+
+           
+      

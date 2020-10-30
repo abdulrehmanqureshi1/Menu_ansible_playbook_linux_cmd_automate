@@ -1,0 +1,7 @@
+---
+# handlers file for samba
+ - name: restart_smb_nmb
+   service:
+    name: "{{ item }}"
+    state: restarted
+   with_items: "{{ samba_src }}"       

@@ -1,0 +1,6 @@
+apache_web_html: /var/www/html
+apache_service: httpd
+apache_conf: /etc/httpd/conf.d
+apache_pkg:
+ - httpd
+ - mod_ssl

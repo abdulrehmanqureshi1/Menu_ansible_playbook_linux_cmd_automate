@@ -1,0 +1,14 @@
+---
+# vars file for samba
+samba_pkg:
+ - samba
+ - samba-common
+ - samba-client
+
+samba_src:
+ - smb
+ - nmb
+
+samba_config_file: /etc/samba/smb.conf
+samba_dir: /smbshare
+

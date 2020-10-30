@@ -1,0 +1,26 @@
+---
+# tasks file for websetup
+   - name: latest {{ apache_pkg }} installed
+     yum:
+      name: "{{ apache_pkg }}"
+      state: present
+
+
+   - name: start and enable {{ apache_service }}
+     service:
+      name: "{{ apache_service }}"
+      state: started
+      enabled: true
+
+   - name: configure apahce dir
+     template:
+      src: /home/dwijesh/webserver/templates/httpd.j2
+      dest: "{{ apache_conf }}/web.conf"
+     notify: apache_restart
+
+
+   - name: copy the webpage
+     copy:
+      src: /home/dwijesh/webserver/files/
+      dest: "{{ apache_web_html }}/"
+     notify: apache_restart     

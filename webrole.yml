@@ -1,0 +1,8 @@
+--
+ - name: roles
+   hosts: webhost
+   oles:
+    - websetup
+      
+              
+

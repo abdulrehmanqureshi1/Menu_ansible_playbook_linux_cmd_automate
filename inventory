@@ -1,0 +1,5 @@
+[samba_server]
+node2.example.com
+
+[webhost]
+node2.example.com
