@@ -4,7 +4,7 @@ Sample HTML/CSS web app that you can deploy to any Cloud provider.
 
 yum install httpd git  -y 
 
-git clone https://github.com/sonulodha/webpage.git
+git clone https://github.com/DwijeshMishra/Menu_ansible_playbook_linux_cmd_automate.git
 
 mv webpage/* /var/wwww/html/
 
