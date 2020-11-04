@@ -1,0 +1,14 @@
+---
+# tasks file for hadoop
+ - name: Install docker-ce
+   yum:
+    name: docker
+    state: present
+   
+ - name: service restart 
+   service: 
+    name: docker
+    state: started
+
+
+     

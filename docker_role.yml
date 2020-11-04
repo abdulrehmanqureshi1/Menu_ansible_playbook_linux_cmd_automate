@@ -1,0 +1,5 @@
+---
+ - name: roles
+   hosts: dockerhost
+   roles:
+    - docker_setup
