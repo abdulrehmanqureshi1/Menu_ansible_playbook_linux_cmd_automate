@@ -1,0 +1,21 @@
+  - name: create build directory
+    file:
+      path: docker
+      state: directory
+      owner: root
+      group: root
+      mode: '0755'
+  - name: copy Dockerfile
+    copy:
+      src: ./Docker/
+      dest: /home/aws/docker/
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: build container image
+    docker_image:
+      name: webserver5
+      build:
+        path: /home/aws/docker/
+        
