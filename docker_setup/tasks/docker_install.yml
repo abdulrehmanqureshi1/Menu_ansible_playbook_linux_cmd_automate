@@ -1,0 +1,21 @@
+#tasks
+ - name: Install docker-ce
+   yum:
+    name: docker
+    state: present
+   
+ - name: service restart 
+   service: 
+    name: docker
+    state: started
+    
+  #dependecies installed
+
+ - name: python dependecy install
+   yum: 
+    name: python2-pip-9.0.1-9.amzn2.0.2.noarch
+    state: present
+
+ - name: Install pip docker
+   command: pip install docker   
+

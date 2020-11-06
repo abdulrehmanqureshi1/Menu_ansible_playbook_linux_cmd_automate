@@ -20,13 +20,17 @@ while True:
     os.system("clear")
     print("""
     \n
-    Press 1 : Run Date
-    Press 2 : Run Calculator
-    Press 3 : Reboot
-    Press 4 : Set Up Samba Server
-    Press 5 : Set Up Web Server
-    Press 6 : User Create
-    Press 7 : Exit
+    Press 1  : Run Date
+    Press 2  : Run Calculator
+    Press 3  : Reboot
+    Press 4  : Set Up Samba Server
+    Press 5  : Set Up Web Server
+    Press 6  : Set Up Docker
+    Press 7  : Install Centos Image In Docker
+    Press 8  : Create webserver Docker Image
+    Press 9  : Run Docker webserver container
+    Press 10 : User Create
+    Press 11 : Exit
     """)
 
     ch = input("Enter Your Choice : ")
@@ -50,10 +54,23 @@ while True:
             os.system("ansible-playbook webrole.yml")
 
         elif int(ch) ==6:
+            os.system("ansible-playbook docker_role.yml --tags install_docker")
+
+        elif int(ch) ==7:
+            os.system("ansible-playbook docker_role.yml --tags pull_image_centos")
+
+        elif int(ch) ==8:
+            os.system("ansible-playbook docker_role.yml --tags build_image_apche")
+
+        elif int(ch) ==9:
+            os.system("ansible-playbook docker_role.yml --tags run_apache_container")
+
+
+        elif int(ch) ==10:
             username = input("Please type username")
             os.system("useradd {}".format(username))
 
-        elif int(ch) ==7:
+        elif int(ch) ==11:
             exit()
 
     elif option == "remote":

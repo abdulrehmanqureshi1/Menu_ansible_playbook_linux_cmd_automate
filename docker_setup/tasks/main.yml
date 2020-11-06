@@ -1,26 +1,17 @@
 ---
 # tasks file for hadoop
- - name: Install docker-ce
-   yum:
-    name: docker
-    state: present
-   
- - name: service restart 
-   service: 
-    name: docker
-    state: started
-    
-  #dependecies installed
-
- - name: python dependecy install
-   yum: 
-    name: python2-pip-9.0.1-9.amzn2.0.2.noarch
-    state: present
-
- - name: Install pip docker
-   command: pip install docker   
+ - import_tasks: docker_install.yml
+   tags:
+    - install_docker
 
  - import_tasks: docker_image_pull.yml
+   tags: 
+    - pull_image_centos
+
  - import_tasks: docker_build_image.yml
+   tags:
+    - build_image_apache
+
  - import_tasks: docker_run.yml
-    
+   tags:
+    - run_apache_container
